@@ -1,5 +1,6 @@
 (function (global) {
-
+  'use strict';
+  
   var scene, renderer;
   var element, $container;
 
@@ -13,12 +14,11 @@
   var onUpdate;
 
   function setup() {
-    setupScene();
+    setupWorld();
     setupListeners();
   }
 
-  function setupScene() {
-
+  function setupWorld() {
     $container = $('#main-container');
 
     scene = new THREE.Scene();
@@ -141,13 +141,13 @@
     requestAnimationFrame(animate);
   }
 
-  var CardboardApp = {
+  var VRWorld = {
     setup: function (options) {
       options = options || {};
 
       this.onSetup  = options.onSetup;
       this.onUpdate = options.onUpdate;
-      onVR = options.onVR;
+      renderVR = options.renderVR;
 
       setup();
 
@@ -165,12 +165,8 @@
     init: function () {
       onUpdate = this.onUpdate;
       animate();
-    },
-
-    toggleVR: function () {
-      renderVR = !renderVR;
     }
   };
 
-  global.CardboardApp = CardboardApp;
+  global.VRWorld = VRWorld;
 })(this);
