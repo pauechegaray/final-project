@@ -25,7 +25,7 @@
 
     camera = new THREE.PerspectiveCamera(75, 1, 0.001, 10000);
     camera.target = new THREE.Vector3(0, 0, 0);
-    camera.position.set(0, 10, 20);
+    camera.position.set(-20, 20, 40);
     scene.add(camera);
 
     vrCamera = new THREE.PerspectiveCamera(75, 1, 0.001, 300);
@@ -34,8 +34,8 @@
     scene.add(vrCamera);
 
     renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true
+      antialias : true,
+      alpha     : true
     });
     renderer.setPixelRatio(window.devicePixelRatio);
     element = renderer.domElement;
@@ -112,6 +112,7 @@
   function onKeypress(event) {
     if (event.key === 'Enter') {
       renderVR = !renderVR;
+      resize();
     }
   }
 
@@ -133,7 +134,7 @@
     update(clock.getDelta());
     
     if (renderVR) {
-      renderer.render(scene, vrCamera);
+      stereoEffect.render(scene, vrCamera);
     } else {
       renderer.render(scene, camera);
     }

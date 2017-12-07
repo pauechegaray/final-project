@@ -12,6 +12,9 @@
      * VRWorld.camera   - Is the camera for the preview.
      * VRWorld.vrCamera - The camera for VR view.
      */
+
+    var gridHelper = new THREE.GridHelper(500, 500);
+    VRWorld.scene.add(gridHelper);
   }
 
   function onUpdate() {
